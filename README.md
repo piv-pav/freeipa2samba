@@ -37,4 +37,7 @@ import sh
 pdbedit = sh.Command("/usr/local/samba/bin/pdbedit")
 ```
 Script also uses python-sh package, so it's on you to satisfy dependencies =)
+
 Well that's probably it.
+
+Ah, almost forgot! Please make sure that no one has access to your passwd.tdb file except samba and keep in secret password of user who has access to ipaNTHash field in FreeIPA LDAP scheme, because NT Hash isn't really secure, they are not salted or anything like that and might be used to compromise your systems related on it. So you kinda have to avoid using this scheme, but unfortunatelly for our case, that was the only option. =(
