@@ -8,7 +8,7 @@ from sh import pdbedit
 config = { 
         "ldap_host":    "ldap://{your_ldap_server}/",
         "ldap_user":    "uid=search,cn=users,cn=accounts,dc=switch,dc=internal",
-        "ldap_pass":    "{users password}",
+        "ldap_pass":    "{user_password}",
         "base_dn":      "cn=users,cn=accounts,dc=switch,dc=internal",
         "blocked_users": ['admin', 'search'],
         }
@@ -50,7 +50,7 @@ for uid, user in users:
     try:
         pdbedit('-L', '-u', login)
     except:
-        # User doesn't exist in the database, creating
+        # User doesn't exist in the database, creating user
         # Password here doesn't really matter, because it will be wiped by NT Hash
         pdbedit("-a", "-u", login, "-t", _in="Doesn't Matter\nDoesn't Matter\n")
 
